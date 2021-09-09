@@ -18,7 +18,6 @@ package com.birjuvachhani.locus
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -51,17 +50,8 @@ internal val locationPermissions: Array<String> by lazy {
 }
 
 /**
- * Holds background location permission introduced in Android Q
- */
-internal val backgroundPermission: Array<String>
-    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-        arrayOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-    } else arrayOf()
-
-
-/**
  * Creates array of permissions
  * @param isBackground Determines whether the background location permission should be included or not
  */
 internal fun getAllPermissions(isBackground: Boolean) =
-    if (isBackground) locationPermissions + backgroundPermission else locationPermissions
+    if (isBackground) locationPermissions else locationPermissions

@@ -69,7 +69,7 @@ class LocusActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
         val isSingleUpdate =
             intent?.getBooleanExtra(Constants.INTENT_EXTRA_IS_SINGLE_UPDATE, false) ?: false
         permissions =
-            if (config.enableBackgroundUpdates && !isSingleUpdate) locationPermissions + backgroundPermission else locationPermissions
+            if (config.enableBackgroundUpdates && !isSingleUpdate) locationPermissions else locationPermissions
         initPermissionModel()
     }
 
@@ -165,7 +165,7 @@ class LocusActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         val perms = if (config.enableBackgroundUpdates && config.forceBackgroundUpdates) {
-            locationPermissions + backgroundPermission
+            locationPermissions
         } else {
             locationPermissions
         }
